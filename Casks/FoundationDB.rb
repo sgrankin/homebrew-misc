@@ -1,8 +1,4 @@
 cask "foundationdb" do
-  name "FoundationDB"
-  desc "FoundationDB"
-  homepage "https://www.foundationdb.org"
-
   arch arm: "arm64", intel: "x86_64"
 
   version "7.1.43"
@@ -11,6 +7,10 @@ cask "foundationdb" do
 
   url "https://github.com/apple/foundationdb/releases/download/#{version}/FoundationDB-#{version}_#{arch}.pkg",
     verified: "github.com/apple/foundationdb/"
+  name "FoundationDB"
+  desc "FoundationDB"
+  homepage "https://www.foundationdb.org"
+
   livecheck do
     url :url
     regex(/^(\d+(?:\.\d+)+)$/i)
@@ -20,10 +20,12 @@ cask "foundationdb" do
   conflicts_with cask: "foundationdb-beta"
 
   pkg "FoundationDB-#{version}_#{arch}.pkg"
+
   uninstall pkgutil: [
     "FoundationDB-server",
     "FoundationDB-clients",
   ]
+
   zap rmdir: [
     "/usr/local/etc/foundationdb",
     "/usr/local/foundationdb",
