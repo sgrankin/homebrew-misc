@@ -9,7 +9,7 @@ cask "foundationdb" do
     verified: "github.com/apple/foundationdb/"
   name "FoundationDB"
   desc "FoundationDB"
-  homepage "https://www.foundationdb.org"
+  homepage "https://www.foundationdb.org/"
 
   livecheck do
     url :url
