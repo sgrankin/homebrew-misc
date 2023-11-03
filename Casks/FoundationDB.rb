@@ -13,7 +13,8 @@ cask "foundationdb" do
     verified: "github.com/apple/foundationdb/"
   livecheck do
     url :url
-    strategy :github_latest
+    regex(/^(\d+(?:\.\d+)+)$/i)
+    strategy :github_releases
   end
 
   conflicts_with cask: "foundationdb-beta"

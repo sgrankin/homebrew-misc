@@ -13,7 +13,15 @@ cask "foundationdb-beta" do
     verified: "github.com/apple/foundationdb/"
   livecheck do
     url :url
-    strategy :github_latest
+    regex(/^(\d+(?:\.\d+)+)$/i)
+    strategy :github_releases do |json, regex|
+      json.map do |release|
+        next if release["draft"] or not release["prerelease"]
+        match = release["tag_name"]&.match(regex)
+        next if match.blank?
+        match[1]
+      end
+    end
   end
 
   conflicts_with cask: "foundationdb"
